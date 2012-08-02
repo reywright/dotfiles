@@ -3,7 +3,7 @@ dotfiles
 
 Setup for .vimrc
 
-1: Download Command line tools for OS X (you can download XCode also if you want it)
+1. Download Command line tools for OS X (you can download XCode also if you want it)
 2. Install Brew
 3. brew install ack
 4. Install Vundle
