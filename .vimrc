@@ -1,65 +1,62 @@
-" "
-" General
-" "
+" initial options to make things work right
+se nocp
+filetype off
 
-syntax enable
-filetype off        " required!
-let mapleader = "," " New Leader
+" settings
+"
+se nowrap tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+se autoindent
+se backspace=2
+se showbreak=»
+se autoread ttyfast lazyredraw
+se backup backupdir=~/.vim/_backup// dir=directory=~/.vim/_temp//
+se laststatus=2
+se number
+se ff=unix fileencoding=utf-8 encoding=utf-8
+se showcmd showmode ruler more
+se shortmess+=atTWI
+se incsearch ignorecase smartcase
+se wildmenu wildmode=list:longest,full
+se hidden
+se sidescroll=50
+se wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
+se wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz,*/.sass-cache/*
+se wildignore+=*.swp,*~,._*
+se listchars=precedes:<,extends:>,tab:\|-,trail:· list
+set backspace=indent,eol,start
+" se shiftround
 
-set nocompatible    " disable vi compatibility.
-set laststatus=2
-set encoding=utf-8
-set number          " Numbers lines
-set incsearch
-set showcmd         " show commands as they are being typed
-set ignorecase
-set smartcase
-set hidden          " Quitting a window normal won't close the buffer
+let mapleader = ","
 
-set wildmenu
-set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
-set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
-set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
-set wildignore+=*.swp,*~,._*
+" paste from X clipboard
+map <silent> <leader>p "*p
+map <silent> <leader>P "*P
 
 " Window pane navigation shortcut
-map <Leader>h <C-w>h
-map <Leader>j <C-w>j
-map <Leader>k <C-w>k
-map <Leader>l <C-w>l
+nn <Leader>h <c-w>h
+nn <Leader>j <c-w>j
+nn <Leader>k <c-w>k
+nn <Leader>l <c-w>l
 
-set backupdir=~/.vim/_backup/
-set directory=~/.vim/_temp/
+"Figure out what this does...
+vnoremap <silent> zz :<C-u>call setpos('.',[0,(line("'>")-line("'<"))/2+line("'<"),0,0])<Bar>normal! zzgv<CR>
+vnoremap <silent> zt :<C-u>call setpos('.',[0,line("'<"),0,0])<Bar>normal! ztgv<CR>
+vnoremap <silent> zb :<C-u>call setpos('.',[0,line("'>"),0,0])<Bar>normal! zbgv<CR>
 
-set list
-set listchars=""                  " Reset the listchars
-set listchars=tab:\ \             " a tab should display as "  ", trailing whitespace as "."
-set listchars+=trail:.            " show trailing spaces as dots
-set listchars+=extends:>          " The character to show in the last column when wrap is
-                                  " off and the line continues beyond the right of the screen
-set listchars+=precedes:<
-
-set backspace=indent,eol,start
-
-" j and k now move inside a wrapped line
-nmap j gj
-nmap k gk
+" move through virtual lines, rows as determined by terminal even if wrapped
+nn j gj
+nn k gk
+" and when those wrapped lines are massive, do this!
+nn gj j
+nn gk k
 
 "Autoload .vimrc when changed
-augroup myvimrchooks
-    au!
-    autocmd bufwritepost .vimrc source ~/.vimrc
-augroup END
+" augroup myvimrchooks
+"     au!
+"     autocmd bufwritepost .vimrc source ~/.vimrc
+" augroup END
 
-""
-" Whitespace
-""
-
-set nowrap
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set expandtab
+se nowrap tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
 " Shortcut for Ack
 nnoremap <Leader>f :Ack<space>
@@ -68,16 +65,11 @@ nnoremap <Leader>f :Ack<space>
 nnoremap <leader>df :set hlsearch!<CR>
 
 " Yank to end of line
-map Y y$
+nn Y y$
 
 " Map colon to semicolon, map semicolon to colon
-noremap ; :
-vnoremap ; :
-noremap : ;
-vnoremap : ;
-
-" Clear all current highlighted from search
-  "nmap <silent> ,/ :nohlsearch<CR>
+nn ; :
+nn : ;
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -97,6 +89,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'tpope/vim-fugitive'
 Bundle 'mileszs/ack.vim'
+Bundle 'vim-scripts/vimwiki'
 
 " Vimscript repos
 Bundle 'Align'
