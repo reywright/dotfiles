@@ -5,7 +5,6 @@
 set nocompatible  " disable vi compatibility.
 filetype off      " required!
 set laststatus=2
-syntax on
 syntax enable
 set encoding=utf-8
 set number
@@ -37,6 +36,12 @@ set listchars+=precedes:<
 set ignorecase
 set smartcase
 
+"Autoload .vimrc when changed
+augroup myvimrchooks
+    au!
+    autocmd bufwritepost .vimrc source ~/.vimrc
+augroup END
+
 "	
 ""
 " Backup and swap files
@@ -59,6 +64,8 @@ map <Leader>h <C-w>h
 map <Leader>j <C-w>j
 map <Leader>k <C-w>k
 map <Leader>l <C-w>l
+
+" Shortcut for Ack
 nnoremap <Leader>f :Ack<space>
 
 " Turns highlighting back on
