@@ -11,12 +11,24 @@ set number
 set incsearch
 set showcmd
 
+" Defaults
+"     filetype on
+"     filetype plugin on
+"     filetype indent on
+"     syntax on
+
 " New Leader
 let mapleader = ","
+
+" j and k now move inside a wrapped line
+nmap j gj
+nmap k gk
 
 ""
 " Whitespace
 ""
+
+set hidden      " Hide those stupid buffer errors
 
 set nowrap
 set tabstop=2
@@ -42,11 +54,7 @@ augroup myvimrchooks
     autocmd bufwritepost .vimrc source ~/.vimrc
 augroup END
 
-"	
-""
 " Backup and swap files
-""
-
 set backupdir=~/.vim/_backup/
 set directory=~/.vim/_temp/
 
@@ -69,10 +77,14 @@ map <Leader>l <C-w>l
 nnoremap <Leader>f :Ack<space>
 
 " Turns highlighting back on
-nnoremap <leader>h :set hlsearch!<CR>
+" nnoremap <leader>h :set hlsearch!<CR>
 
 " Yank to end of line
 map Y y$
+
+" Vim Smash Escape
+    "inoremap jk <Esc>
+    "inoremap kj <Esc>
 
 " Shortcut for all vim commands
 noremap ; :
@@ -82,14 +94,9 @@ vnoremap ; :
 noremap : ;
 vnoremap : ;
 
-" Hide those stupid buffer errors
-set hidden
 
 " Clear all current highlighted from search
   "nmap <silent> ,/ :nohlsearch<CR>
-	"`
-" Toggle hlsearch with <leader>hs
-nmap <leader>hs :set hlsearch! hlsearch?<CR>
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
