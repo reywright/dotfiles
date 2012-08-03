@@ -9,7 +9,7 @@ se autoindent
 se backspace=2
 se showbreak=»
 se autoread ttyfast lazyredraw
-se backup backupdir=~/.vim/_backup// dir=directory=~/.vim/_temp//
+se backupdir=~/.vim/_backup/ dir=~/.vim/_temp/
 se laststatus=2
 se number
 se ff=unix fileencoding=utf-8 encoding=utf-8
