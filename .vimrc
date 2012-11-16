@@ -23,6 +23,8 @@ se incsearch ignorecase smartcase
 se wildmenu wildmode=list:longest,full
 
 se hidden
+
+
    " allow buffers to exist without being actively worked on
 
 " se sidescroll=50
@@ -97,6 +99,11 @@ nn Y y$
 nn ; :
 nn : ;
 
+"finese these timeouts later
+:set timeout timeoutlen=500 ttimeoutlen=100
+
+" Map escape to jk
+:imap jk <Esc>
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
