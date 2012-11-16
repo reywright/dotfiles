@@ -1,36 +1,64 @@
 " initial options to make things work right
 se nocp
 filetype off
+filetype plugin indent on   " required!
 
 " settings
 "
-se nowrap tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-se autoindent
+se nowrap shiftwidth=2 softtabstop=2 expandtab
+" se autoindent
 se backspace=2
-se showbreak=»
-se autoread ttyfast lazyredraw
+se showbreak=↪\ 
+se autoread ttyfast
 se backupdir=~/.vim/_backup/ dir=~/.vim/_temp/
+   " change where swap files save
 se laststatus=2
+   " always show status
 se number
-se ff=unix fileencoding=utf-8 encoding=utf-8
+   " show line numbers
+se encoding=utf-8
 se showcmd showmode ruler more
 se shortmess+=atTWI
 se incsearch ignorecase smartcase
 se wildmenu wildmode=list:longest,full
+
 se hidden
-se sidescroll=50
+   " allow buffers to exist without being actively worked on
+
+" se sidescroll=50
+
 se wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
 se wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz,*/.sass-cache/*
 se wildignore+=*.swp,*~,._*
 se listchars=precedes:<,extends:>,tab:\|-,trail:· list
-set backspace=indent,eol,start
-" se shiftround
+se backspace=indent,eol,start
+
+" set statusline=
+" set statusline +=*%y%*                "file type
+" set statusline +=%4*\ %<%F%*            "full path
+
+" set laststatus=2
+" set statusline=\ %f%m%r%h%w\ %=%({%{&ff}\|%{(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\")}%k\|%Y}%)\ %([%l,%v][%p%%]\ %)
+
+" I likey this one
+" set statusline=%F%m%r%h%w\ 
+" set statusline+=%{fugitive#statusline()}\    
+"h set statusline+=[%{strlen(&fenc)?&fenc:&enc}]
+" set statusline +=%2*%m%*                "modified flag
+" set statusline+=%=\ [line\ %l\/%L]
+"
+"
+tabnew
+bwipeout
+
+nnoremap <Leader>sh Hmx`` \|:split<CR>`xzt``p
+"hnnoremap <Leader>sv Hmx`` \|:split<CR>`xzt``p
+
+"o
+"o
+set statusline=[%n]\ %<%.99f\ %h%w%m%r%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%y%=%-16(\ %l,%c-%v\ %)%P
 
 let mapleader = ","
-
-" paste from X clipboard
-map <silent> <leader>p "*p
-map <silent> <leader>P "*P
 
 " Window pane navigation shortcut
 nn <Leader>h <c-w>h
@@ -39,9 +67,9 @@ nn <Leader>k <c-w>k
 nn <Leader>l <c-w>l
 
 "Figure out what this does...
-vnoremap <silent> zz :<C-u>call setpos('.',[0,(line("'>")-line("'<"))/2+line("'<"),0,0])<Bar>normal! zzgv<CR>
-vnoremap <silent> zt :<C-u>call setpos('.',[0,line("'<"),0,0])<Bar>normal! ztgv<CR>
-vnoremap <silent> zb :<C-u>call setpos('.',[0,line("'>"),0,0])<Bar>normal! zbgv<CR>
+" vnoremap <silent> zz :<C-u>call setpos('.',[0,(line("'>")-line("'<"))/2+line("'<"),0,0])<Bar>normal! zzgv<CR>
+" vnoremap <silent> zt :<C-u>call setpos('.',[0,line("'<"),0,0])<Bar>normal! ztgv<CR>
+" vnoremap <silent> zb :<C-u>call setpos('.',[0,line("'>"),0,0])<Bar>normal! zbgv<CR>
 
 " move through virtual lines, rows as determined by terminal even if wrapped
 nn j gj
@@ -56,10 +84,8 @@ nn gk k
 "     autocmd bufwritepost .vimrc source ~/.vimrc
 " augroup END
 
-se nowrap tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-
 " Shortcut for Ack
-nnoremap <Leader>f :Ack<space>
+nnoremap <Leader>f :Ack!<space>
 
 " Turns highlighting back on
 nnoremap <leader>df :set hlsearch!<CR>
@@ -71,6 +97,7 @@ nn Y y$
 nn ; :
 nn : ;
 
+
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
@@ -81,23 +108,40 @@ Bundle 'gmarik/vundle'
 " My Bundles here:
 "
 " original repos on gihub
+"
+Bundle "vim-scripts/UltiSnips"
 Bundle 'Osse/double-tap'
-Bundle 'tpope/vim-fugitive'
 Bundle 'jeetsukumaran/vim-buffergator'
-Bundle 'scrooloose/nerdtree'
+" Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
-Bundle 'Lokaltog/vim-powerline'
 Bundle 'tpope/vim-fugitive'
 Bundle 'mileszs/ack.vim'
-Bundle 'vim-scripts/vimwiki'
+Bundle 'vim-scripts/matchit.zip'
+
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+
+" Bundle 'vim-scripts/vimwiki'
 
 " Vimscript repos
-Bundle 'Align'
+" Bundle 'Align'
 
 " colorschemes:
 Bundle 'rey-wright/argokai'
+Bundle 'vim-scripts/rootwater.vim'
+Bundle 'w0ng/vim-hybrid'
+Bundle 'tristen/superman'
+Bundle 'tomasr/molokai'
+Bundle 'sjl/badwolf'
+Bundle 'toupeira/vim-desertink'
+Bundle 'noahfrederick/Hemisu'
+Bundle 'mayansmoke'
+Bundle 'altercation/vim-colors-solarized'
 
-filetype plugin indent on   " required!
+let g:UltiSnipsExpandTrigger="<tab>"
+
+" se shiftround
+
 
 "
 " Brief help
