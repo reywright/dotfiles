@@ -6,22 +6,26 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " My Bundles here:
-Bundle "vim-scripts/UltiSnips"
-Bundle 'gglanzani/ultisnips-snippets.git'
-Bundle 'Osse/double-tap'
-Bundle 'scrooloose/nerdtree'
-Bundle 'kien/ctrlp.vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'mileszs/ack.vim'
-Bundle 'vim-scripts/matchit.zip'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'Valloric/MatchTagAlways'
-Bundle 'Raimondi/delimitMate'
-Bundle 'tpope/vim-unimpaired'
+" Bundle "vim-scripts/UltiSnips"
+" Bundle 'gglanzani/ultisnips-snippets.git'
+" Bundle 'Osse/double-tap'
+" Bundle 'scrooloose/nerdtree'
+" Bundle 'kien/ctrlp.vim'
+" Bundle 'tpope/vim-fugitive'
+" Bundle 'ervandew/supertab'
+" Bundle 'mileszs/ack.vim'
+" Bundle 'vim-scripts/matchit.zip'
+" Bundle 'tomtom/tcomment_vim'
+" Bundle 'Valloric/MatchTagAlways'
+" Bundle 'Raimondi/delimitMate'
+" Bundle 'tpope/vim-unimpaired'
+Bundle 'Rykka/colorv.vim'
+
 
 " Bundle 'Align'
 
 " colorschemes:
+Bundle 'rey-wright/argokai'
 Bundle 'vim-scripts/rootwater.vim'
 Bundle 'w0ng/vim-hybrid'
 Bundle 'tristen/superman'
@@ -83,7 +87,8 @@ set ttimeout                      " But do time out key codes.
 
 set gdefault                      " Make `substitute` replace all occurrences on a line by default.
 
-" se autoindent
+se autoindent
+set copyindent
 set smartindent
 se showbreak=↪\  
 
@@ -101,13 +106,15 @@ set statusline+=%{fugitive#statusline()}\
 " set statusline+=[%{strlen(&fenc)?&fenc:&enc}]
 set statusline +=%2*%m%*                "modified flag
 
-let mapleader = ","
+let mapleader = " "
 let g:UltiSnipsSnippetDirectories=["my_snippets"]
 let g:UltiSnipsExpandTrigger="<tab>"
 
 let delimitMate_expand_cr = 1
 
 nn <Leader>sh Hmx`` \|:split<CR>`xzt``
+
+nn <leader>ce :ColorVEdit<CR>
 
 " nnoremap <Leader>m :CtrlPMRUFiles<CR>
 " nnoremap <Leader>b :CtrlPBuffer<CR>

@@ -1,6 +1,6 @@
 " Make MacVim / gVim pretty
 
-colo hemisu
+colo argokai
 
 set guioptions-=T
 
