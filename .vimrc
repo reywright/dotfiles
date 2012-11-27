@@ -1,49 +1,46 @@
 " Brought to you by Vundle
-se nocp
+set nocp
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " My Bundles here:
-" Bundle "vim-scripts/UltiSnips"
-" Bundle 'gglanzani/ultisnips-snippets.git'
+Bundle "vim-scripts/UltiSnips"
+Bundle 'rey-wright/ultisnips-snippets.git'
 " Bundle 'Osse/double-tap'
-" Bundle 'scrooloose/nerdtree'
-" Bundle 'kien/ctrlp.vim'
-" Bundle 'tpope/vim-fugitive'
-" Bundle 'ervandew/supertab'
-" Bundle 'mileszs/ack.vim'
-" Bundle 'vim-scripts/matchit.zip'
-" Bundle 'tomtom/tcomment_vim'
-" Bundle 'Valloric/MatchTagAlways'
-" Bundle 'Raimondi/delimitMate'
-" Bundle 'tpope/vim-unimpaired'
+Bundle 'scrooloose/nerdtree'
+Bundle 'kien/ctrlp.vim'
+Bundle 'tpope/vim-fugitive'
+Bundle 'ervandew/supertab'
+Bundle 'mileszs/ack.vim'
+Bundle 'vim-scripts/matchit.zip'
+Bundle 'tomtom/tcomment_vim'
+Bundle 'Valloric/MatchTagAlways'
+Bundle 'Raimondi/delimitMate'
 Bundle 'Rykka/colorv.vim'
-
-
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-repeat'
 " Bundle 'Align'
+" Bundle 'lepture/vim-css'
+
 
 " colorschemes:
 Bundle 'rey-wright/argokai'
-Bundle 'vim-scripts/rootwater.vim'
+ " Take the diff colors then delete hybrid
 Bundle 'w0ng/vim-hybrid'
-Bundle 'tristen/superman'
-Bundle 'tomasr/molokai'
-Bundle 'toupeira/vim-desertink'
 Bundle 'noahfrederick/Hemisu'
-Bundle 'altercation/vim-colors-solarized'
 
 filetype plugin indent on   " required!
 syntax enable
-
-let delimitMate_expand_cr = 1
-au FileType mail let b:delimitMate_expand_cr = 1
 
 set showcmd                       " Display incomplete commands.
 set showmode                      " Display the mode you're in.
 
 set backspace=indent,eol,start    " Intuitive backspacing.
+set backspace=2
 
 set hidden                        " Handle multiple buffers better.
 
@@ -61,11 +58,15 @@ set incsearch                     " Highlight matches as you type.
 set hlsearch                      " Highlight matches.
 
 set wrap                          " Turn on line wrapping.
-set scrolloff=3                   " Show 3 lines of context around the cursor.
+" set scrolloff=3                   " Show 3 lines of context around the cursor.
 
-set shiftwidth=2                  " 
-set tabstop=2                     " Tabs and spaces.
+set shiftwidth=4                 " 
+set tabstop=4                     " Tabs and spaces.
 set expandtab                     " 
+
+set nrformats=                    " This will cause Vim to treat all numerals
+                                  " As decimal, regarless whether they are
+                                  " padded with zeros.
 
 set title                         " Set the terminal's title
 
@@ -85,51 +86,42 @@ set autoread                      " Automatically re-read files changed outside 
 set notimeout                     " Don't time out partially entered mapped key sequences.
 set ttimeout                      " But do time out key codes.
 
-set gdefault                      " Make `substitute` replace all occurrences on a line by default.
-
 se autoindent
 set copyindent
 set smartindent
-se showbreak=↪\  
+set showbreak=↪\  
+
+" The active split is now on the right / bottom for
+" vertical / horizontal splits respectively. To 
+" get native functionality, use the maps provited
+set splitright
+set splitbelow
+ca vsl lefta vs
+ca spt abo sp
+" ca qall <silent> bufdo update|bdelete
 
 
 " I do not want to see any of this stuff when I'm searching for files
-se wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
-se wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz,*/.sass-cache/*
-se wildignore+=*.swp,*~,._*
+set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz,*/.sass-cache/*
+set wildignore+=*.php*
+set wildignore+=*.swp,*~,._*
 
 " se listchars=precedes:<,extends:>,tab:\|-,trail:· list
 
 set statusline=%F%r%h%w\ 
 set statusline+=%{fugitive#statusline()}\    
-" set statusline +=%y%*                "file type
-" set statusline+=[%{strlen(&fenc)?&fenc:&enc}]
+set statusline +=%y%*                "file type
+set statusline+=[%{strlen(&fenc)?&fenc:&enc}]
 set statusline +=%2*%m%*                "modified flag
 
-let mapleader = " "
-let g:UltiSnipsSnippetDirectories=["my_snippets"]
-let g:UltiSnipsExpandTrigger="<tab>"
+" let g:Powerline_symbols = 'fancy'
 
+let g:SuperTabCrMapping = 0
 let delimitMate_expand_cr = 1
 
-nn <Leader>sh Hmx`` \|:split<CR>`xzt``
-
-nn <leader>ce :ColorVEdit<CR>
-
-" nnoremap <Leader>m :CtrlPMRUFiles<CR>
-" nnoremap <Leader>b :CtrlPBuffer<CR>
-" nnoremap <Leader>t :CtrlPBufTag<CR>
-" nnoremap <Leader>T :CtrlPBufTagAll<CR>
-
-
-" when splitting a pane vertically, this code
-" prevents the panes from scrolling
-tabnew
-bwipeout
-
-no <Leader>y "*y
-no <Leader>p :set paste<CR>"*p:set nopaste<CR>
-no <Leader>P :set paste<CR>"*P:set nopaste<CR>
+nnoremap <SPACE> <Nop>
+let mapleader = " "
 
 " Window pane navigation shortcut
 nn <Leader>h <c-w>h
@@ -137,40 +129,45 @@ nn <Leader>j <c-w>j
 nn <Leader>k <c-w>k
 nn <Leader>l <c-w>l
 
-" window
-nn <leader>swh  :topleft  vnew<CR>
-nn <leader>swl :botright vnew<CR>
-nn <leader>swk    :topleft  new<CR>
-nn <leader>swj  :botright new<CR>
+" Ultisnips
+let g:UltiSnipsSnippetDirectories=["my_snippets"]
+let g:UltiSnipsExpandTrigger="<tab>"
+nn <leader>ue :UltiSnipsEdit<CR>
 
-" buffer
-nn <leader>sh   :leftabove  vnew<CR>
-nn <leader>sl  :rightbelow vnew<CR>
-nn <leader>sk     :leftabove  new<CR>
-nn <leader>sj   :rightbelow new<CR>
+" ColorV
+nn <leader>ce :ColorVEdit<CR>
 
-" Use CtrlP to manage buffers
+" CtrlP
+nn <Leader>m :CtrlPMRUFiles<CR>
 nn <Leader>b :CtrlPBuffer<CR>
-
+let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_buffer_func = { 'enter': 'MyCtrlPMappings' }
-
 func! MyCtrlPMappings()
-    nnoremap <buffer> <silent> <c-x> :call <sid>DeleteBuffer()<cr>
+    nnoremap <buffer> <silent> <c-@> :call <sid>DeleteBuffer()<cr>
 endfunc
-
 func! s:DeleteBuffer()
     exec "bd" fnamemodify(getline('.')[2:], ':p')
     exec "norm \<F5>"
 endfunc
 
+" Sass
+" au BufRead,BufNewFile *.sass set filetype=css
+
+
+" no <Leader>y "*y
+" no <Leader>p :set paste<CR>"*p:set nopaste<CR>
+" no <Leader>P :set paste<CR>"*P:set nopaste<CR>
+
+nn <leader>x :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
 " NerdTree Toggle
 nn <Leader>n :NERDTreeToggle<CR>
 
-" UltiSnips Stuff
-nn <leader>ue :UltiSnipsEdit<CR>
-
-" Shortcut for Ack
-nn <silent> <Leader>f :Ack! 
+" Ack
+nn <Leader>f :Ack! 
+let g:ackprg = 'ag --nogroup --nocolor --column' 
 
 " move through virtual lines, rows as determined by terminal even if wrapped
 nn j gj
@@ -180,7 +177,7 @@ nn gj j
 nn gk k
 
 " spacebar turns off search highlighting.
-nn <silent> <space> :noh<CR>
+nn <silent> <leader><space> :noh<CR>
 
 " Yank to end of line
 nn Y y$
@@ -192,10 +189,11 @@ vn ; :
 vn : ;
 
 "finese these timeouts later
-:set timeout timeoutlen=500 ttimeoutlen=100
+" :set timeout timeoutlen=500 ttimeoutlen=100
 
 " Map escape to jk
-:imap jk <Esc>
+:imap jk <Esc><Esc>
+:inoremap jk <esc><esc>
 
 " When joining lines, vim adds a space.... I end up removing  that space far too often, so let's override the default" functionality of J
 " Also: no gj does not also accomplish this, because if both the lines are indented, the indentation will be carried over
