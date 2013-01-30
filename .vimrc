@@ -8,24 +8,22 @@ Bundle 'gmarik/vundle'
 " My Bundles here:
 Bundle "vim-scripts/UltiSnips"
 Bundle 'rey-wright/ultisnips-snippets.git'
-" Bundle 'Osse/double-tap'
 Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-fugitive'
-Bundle 'ervandew/supertab'
+" Bundle 'ervandew/supertab'
 Bundle 'mileszs/ack.vim'
 Bundle 'vim-scripts/matchit.zip'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'Valloric/MatchTagAlways'
 Bundle 'Raimondi/delimitMate'
-Bundle 'Rykka/colorv.vim'
+Bundle 'skammer/vim-css-color'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
-" Bundle 'Align'
-" Bundle 'lepture/vim-css'
-
+Bundle 'godlygeek/tabular'
+Bundle 'dahu/LearnVim'
 
 " colorschemes:
 Bundle 'rey-wright/argokai'
@@ -60,9 +58,9 @@ set hlsearch                      " Highlight matches.
 set wrap                          " Turn on line wrapping.
 " set scrolloff=3                   " Show 3 lines of context around the cursor.
 
-set shiftwidth=4                 " 
+set shiftwidth=4                  "
 set tabstop=4                     " Tabs and spaces.
-set expandtab                     " 
+set expandtab                     "
 
 set nrformats=                    " This will cause Vim to treat all numerals
                                   " As decimal, regarless whether they are
@@ -88,11 +86,10 @@ set ttimeout                      " But do time out key codes.
 
 se autoindent
 set copyindent
-set smartindent
-set showbreak=↪\  
+set showbreak=↪\
 
 " The active split is now on the right / bottom for
-" vertical / horizontal splits respectively. To 
+" vertical / horizontal splits respectively. To
 " get native functionality, use the maps provited
 set splitright
 set splitbelow
@@ -109,8 +106,8 @@ set wildignore+=*.swp,*~,._*
 
 " se listchars=precedes:<,extends:>,tab:\|-,trail:· list
 
-set statusline=%F%r%h%w\ 
-set statusline+=%{fugitive#statusline()}\    
+set statusline=%F%r%h%w\
+set statusline+=%{fugitive#statusline()}\
 set statusline +=%y%*                "file type
 set statusline+=[%{strlen(&fenc)?&fenc:&enc}]
 set statusline +=%2*%m%*                "modified flag
@@ -123,6 +120,9 @@ let delimitMate_expand_cr = 1
 nnoremap <SPACE> <Nop>
 let mapleader = " "
 
+set list
+set listchars=tab:\ \ ,trail:.
+
 " Window pane navigation shortcut
 nn <Leader>h <c-w>h
 nn <Leader>j <c-w>j
@@ -130,7 +130,7 @@ nn <Leader>k <c-w>k
 nn <Leader>l <c-w>l
 
 " Ultisnips
-let g:UltiSnipsSnippetDirectories=["my_snippets"]
+let g:UltiSnipsSnippetDirectories=["bundle/UltiSnips/UltiSnips"]
 let g:UltiSnipsExpandTrigger="<tab>"
 nn <leader>ue :UltiSnipsEdit<CR>
 
@@ -140,6 +140,7 @@ nn <leader>ce :ColorVEdit<CR>
 " CtrlP
 nn <Leader>m :CtrlPMRUFiles<CR>
 nn <Leader>b :CtrlPBuffer<CR>
+
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_buffer_func = { 'enter': 'MyCtrlPMappings' }
 func! MyCtrlPMappings()
@@ -166,8 +167,8 @@ nn <leader>x :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> tr
 nn <Leader>n :NERDTreeToggle<CR>
 
 " Ack
-nn <Leader>f :Ack! 
-let g:ackprg = 'ag --nogroup --nocolor --column' 
+nn <Leader>f :Ack!
+" let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " move through virtual lines, rows as determined by terminal even if wrapped
 nn j gj
@@ -197,7 +198,6 @@ vn : ;
 
 " When joining lines, vim adds a space.... I end up removing  that space far too often, so let's override the default" functionality of J
 " Also: no gj does not also accomplish this, because if both the lines are indented, the indentation will be carried over
-nn jj
 nn J Jx
 
 " command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
