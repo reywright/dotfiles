@@ -5,98 +5,101 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
 
-" My Bundles here:
+My Bundles here:
 Bundle "vim-scripts/UltiSnips"
 Bundle 'rey-wright/ultisnips-snippets.git'
 Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-fugitive'
-" Bundle 'ervandew/supertab'
+Bundle 'ervandew/supertab'
+Bundle 'vim-scripts/AutoComplPop'
 Bundle 'mileszs/ack.vim'
 Bundle 'vim-scripts/matchit.zip'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'Valloric/MatchTagAlways'
 Bundle 'Raimondi/delimitMate'
-Bundle 'skammer/vim-css-color'
+" Bundle 'skammer/vim-css-color'
+Bundle 'Rykka/colorv.vim'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 Bundle 'godlygeek/tabular'
+Bundle 'vim-scripts/BufOnly.vim'
+Bundle 'sjl/gundo.vim'
 Bundle 'dahu/LearnVim'
 
 " colorschemes:
 Bundle 'rey-wright/argokai'
- " Take the diff colors then delete hybrid
+" Take the diff colors then delete hybrid
 Bundle 'w0ng/vim-hybrid'
 Bundle 'noahfrederick/Hemisu'
+
+" powerline color schemes
+Bundle 'zaki/zazen-powerline'
 
 filetype plugin indent on   " required!
 syntax enable
 
-set showcmd                       " Display incomplete commands.
-set showmode                      " Display the mode you're in.
+set background=light "for Hemisu
+set showcmd                             " Display incomplete commands.
+set showmode                            " Display the mode you're in.
 
-set backspace=indent,eol,start    " Intuitive backspacing.
-set backspace=2
+set backspace=indent,eol,start          " Intuitive backspacing.
 
-set hidden                        " Handle multiple buffers better.
+set hidden                              " Handle multiple buffers better.
 
-set wildmenu                      " Enhanced command line completion.
-set wildmode=list:longest         " Complete files like a shell.
+set wildmenu                            " Enhanced command line completion.
+set wildmode=list:longest               " Complete files like a shell.
 
-set ignorecase                    " Case-insensitive searching.
-set smartcase                     " But case-sensitive if expression contains a capital letter.
+set ignorecase                          " Case-insensitive searching.
+set smartcase                           " But case-sensitive if expression contains a capital letter.
 
-set number                        " Show absolute line numbers (cf. relativenumber).
-set ruler                         " Show cursor position.
-set laststatus=2                  " Always show a status line.
+set number                              " Show absolute line numbers (cf. relativenumber).
+set ruler                               " Show cursor position.
+set laststatus=2                        " Always show a status line.
 
-set incsearch                     " Highlight matches as you type.
-set hlsearch                      " Highlight matches.
+set incsearch                           " Highlight matches as you type.
+set hlsearch                            " Highlight matches.
 
-set wrap                          " Turn on line wrapping.
-" set scrolloff=3                   " Show 3 lines of context around the cursor.
+set nowrap                              " Turn off line wrapping.
+" set scrolloff=3                       " Show 3 lines of context around the cursor.
 
-set shiftwidth=4                  "
-set tabstop=4                     " Tabs and spaces.
-set expandtab                     "
+set shiftwidth=4                        "
+set tabstop=4                           " Tabs and spaces.
+set expandtab                           "
 
-set nrformats=                    " This will cause Vim to treat all numerals
-                                  " As decimal, regarless whether they are
-                                  " padded with zeros.
+set nrformats=                          " This will cause Vim to treat all numerals
+                                        " As decimal, regarless whether they are
+                                        " padded with zeros.
 
-set title                         " Set the terminal's title
+set title                               " Set the terminal's title
 
-set visualbell                    " No beeping.
+set visualbell                          " No beeping.
 
-set nobackup                      " No backups.
-set nowritebackup                 " No backups.
-set noswapfile                    " No swap files; more hassle than they're worth.
+set nobackup                            " No backups.
+set nowritebackup                       " No backups.
+set noswapfile                          " No swap files; more hassle than they're worth.
 
-set tildeop                       " Make tilde command behave like an operator.
-set shortmess=atI                 " Avoid unnecessary hit-enter prompts.
+set tildeop                             " Make tilde command behave like an operator.
+set shortmess=atI                       " Avoid unnecessary hit-enter prompts.
 
-set noequalalways                 " Resize windows as little as possible.
+set autoread                            " Automatically re-read files changed outside Vim.
 
-set autoread                      " Automatically re-read files changed outside Vim.
+set notimeout                           " Don't time out partially entered mapped key sequences.
+set ttimeout                            " But do time out key codes.
+set noequalalways
 
-set notimeout                     " Don't time out partially entered mapped key sequences.
-set ttimeout                      " But do time out key codes.
 
-se autoindent
+set nojoinspaces                        " this SHOULD replace the mapping I made above
+
+set autoindent
 set copyindent
 set showbreak=↪\
-
-" The active split is now on the right / bottom for
-" vertical / horizontal splits respectively. To
-" get native functionality, use the maps provited
-set splitright
-set splitbelow
-ca vsl lefta vs
-ca spt abo sp
-" ca qall <silent> bufdo update|bdelete
-
+set splitright                          " The active split is now on the right / bottom for
+set splitbelow                          " vertical / horizontal splits respectively. To
+cabbrev vsl lefta vs                    " get native functionality, use the maps provited
+cabbrev spt abo sp
 
 " I do not want to see any of this stuff when I'm searching for files
 set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
@@ -104,30 +107,44 @@ set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz,*/.sass-cache/*
 set wildignore+=*.php*
 set wildignore+=*.swp,*~,._*
 
-" se listchars=precedes:<,extends:>,tab:\|-,trail:· list
+set list
+set listchars=precedes:<,extends:>,tab:\|-,trail:· list
 
-set statusline=%F%r%h%w\
-set statusline+=%{fugitive#statusline()}\
-set statusline +=%y%*                "file type
-set statusline+=[%{strlen(&fenc)?&fenc:&enc}]
-set statusline +=%2*%m%*                "modified flag
-
-" let g:Powerline_symbols = 'fancy'
+" Tim pope says it's a smart default?
+" I guess I'll play with it, make a decision
+" later.
+if !&scrolloff
+  set scrolloff=1
+endif
+if !&sidescrolloff
+  set sidescrolloff=5
+endif
+set display+=lastline
 
 let g:SuperTabCrMapping = 0
+
+" Delimitmate
 let delimitMate_expand_cr = 1
 
 nnoremap <SPACE> <Nop>
 let mapleader = " "
 
-set list
-set listchars=tab:\ \ ,trail:.
+" Save files easier
+nn <leader>w <esc>:w<cr>
+
+" Tabularize
+vn <leader>t :Tabularize /
 
 " Window pane navigation shortcut
 nn <Leader>h <c-w>h
 nn <Leader>j <c-w>j
 nn <Leader>k <c-w>k
 nn <Leader>l <c-w>l
+
+" Powerline
+let g:Powerline_symbols = 'fancy'
+let g:Powerline_colorscheme = 'zazen'
+call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
 
 " Ultisnips
 let g:UltiSnipsSnippetDirectories=["bundle/UltiSnips/UltiSnips"]
@@ -137,12 +154,18 @@ nn <leader>ue :UltiSnipsEdit<CR>
 " ColorV
 nn <leader>ce :ColorVEdit<CR>
 
+" Gundo
+nn <leader>u :GundoToggle<CR>
+
 " CtrlP
 nn <Leader>m :CtrlPMRUFiles<CR>
 nn <Leader>b :CtrlPBuffer<CR>
 
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_buffer_func = { 'enter': 'MyCtrlPMappings' }
+" Let the root be the working directory... don't let ctrl + p decide based on
+" repo (or however it figures that out)
+let g:ctrlp_working_path_mode = 0
 func! MyCtrlPMappings()
     nnoremap <buffer> <silent> <c-@> :call <sid>DeleteBuffer()<cr>
 endfunc
@@ -151,14 +174,22 @@ func! s:DeleteBuffer()
     exec "norm \<F5>"
 endfunc
 
-" Sass
-" au BufRead,BufNewFile *.sass set filetype=css
 
+" This utilizes the power of BufOnly: basically if :qa throws
+" errors, close all non-modified buffers (including the
+" current buffer)
+function! ElegantClose()
+    try
+        execute "qa"
+        let yes = 1
+    catch /^Vim\%((\a\+)\)\=:E37/
+            execute "BufOnly"
+            execute "bd"
+    endtry
+endfunction
+cabbrev qa call ElegantClose()
 
-" no <Leader>y "*y
-" no <Leader>p :set paste<CR>"*p:set nopaste<CR>
-" no <Leader>P :set paste<CR>"*P:set nopaste<CR>
-
+" This is for creating / debugging colorschemes
 nn <leader>x :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
@@ -166,9 +197,11 @@ nn <leader>x :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> tr
 " NerdTree Toggle
 nn <Leader>n :NERDTreeToggle<CR>
 
+" BufOnly
+nn <Leader>cb :BufOnly<CR>:bd <cr>
+
 " Ack
 nn <Leader>f :Ack!
-" let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " move through virtual lines, rows as determined by terminal even if wrapped
 nn j gj
@@ -177,8 +210,8 @@ nn k gk
 nn gj j
 nn gk k
 
-" spacebar turns off search highlighting.
-nn <silent> <leader><space> :noh<CR>
+" backspace turns off search highlighting.
+nn <silent> <BS> :nohls<CR>
 
 " Yank to end of line
 nn Y y$
@@ -189,16 +222,9 @@ nn : ;
 vn ; :
 vn : ;
 
-"finese these timeouts later
-" :set timeout timeoutlen=500 ttimeoutlen=100
-
 " Map escape to jk
 :imap jk <Esc><Esc>
 :inoremap jk <esc><esc>
-
-" When joining lines, vim adds a space.... I end up removing  that space far too often, so let's override the default" functionality of J
-" Also: no gj does not also accomplish this, because if both the lines are indented, the indentation will be carried over
-nn J Jx
 
 " command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
