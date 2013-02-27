@@ -5,20 +5,19 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
 
-My Bundles here:
+" My Bundles here:
 Bundle "vim-scripts/UltiSnips"
 Bundle 'rey-wright/ultisnips-snippets.git'
 Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'ervandew/supertab'
-Bundle 'vim-scripts/AutoComplPop'
+" Bundle 'vim-scripts/AutoComplPop'
 Bundle 'mileszs/ack.vim'
 Bundle 'vim-scripts/matchit.zip'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'Valloric/MatchTagAlways'
 Bundle 'Raimondi/delimitMate'
-" Bundle 'skammer/vim-css-color'
 Bundle 'Rykka/colorv.vim'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'tpope/vim-unimpaired'
@@ -28,6 +27,7 @@ Bundle 'godlygeek/tabular'
 Bundle 'vim-scripts/BufOnly.vim'
 Bundle 'sjl/gundo.vim'
 Bundle 'dahu/LearnVim'
+Bundle 'vim-scripts/ZoomWin'
 
 " colorschemes:
 Bundle 'rey-wright/argokai'
@@ -66,6 +66,7 @@ set nowrap                              " Turn off line wrapping.
 " set scrolloff=3                       " Show 3 lines of context around the cursor.
 
 set shiftwidth=4                        "
+set softtabstop=4
 set tabstop=4                           " Tabs and spaces.
 set expandtab                           "
 
@@ -90,16 +91,18 @@ set notimeout                           " Don't time out partially entered mappe
 set ttimeout                            " But do time out key codes.
 set noequalalways
 
-
 set nojoinspaces                        " this SHOULD replace the mapping I made above
 
 set autoindent
 set copyindent
-set showbreak=↪\
+set showbreak=↪\  
 set splitright                          " The active split is now on the right / bottom for
 set splitbelow                          " vertical / horizontal splits respectively. To
 cabbrev vsl lefta vs                    " get native functionality, use the maps provited
 cabbrev spt abo sp
+
+" using this to get line autocompletion to not automatically select the first option
+set cot+=longest
 
 " I do not want to see any of this stuff when I'm searching for files
 set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
@@ -126,6 +129,12 @@ let g:SuperTabCrMapping = 0
 " Delimitmate
 let delimitMate_expand_cr = 1
 
+" http://morearty.com/blog/2013/01/22/fixing-vims-indenting-of-html-files.html
+" Vim’s default indentation for HTML has a pretty severe quirk:
+" When you press return after a tag  already created Vim will unindent the new line and the previous line.
+" With the following line, pressing the return key will only set the indentation on the newly created line.
+autocmd FileType html setlocal indentkeys-=*<Return>
+
 nnoremap <SPACE> <Nop>
 let mapleader = " "
 
@@ -147,12 +156,13 @@ let g:Powerline_colorscheme = 'zazen'
 call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
 
 " Ultisnips
-let g:UltiSnipsSnippetDirectories=["bundle/UltiSnips/UltiSnips"]
+let g:UltiSnipsSnippetDirectories=["bundle/ultisnips-snippets/my_snippets"]
 let g:UltiSnipsExpandTrigger="<tab>"
 nn <leader>ue :UltiSnipsEdit<CR>
 
 " ColorV
 nn <leader>ce :ColorVEdit<CR>
+let g:colorv_preview_ftype = 'css,html,javascript,sass'
 
 " Gundo
 nn <leader>u :GundoToggle<CR>
@@ -174,6 +184,31 @@ func! s:DeleteBuffer()
     exec "norm \<F5>"
 endfunc
 
+function! DeleteFile(...)
+  if(exists('a:1'))
+    let theFile=a:1
+  elseif ( &ft == 'help' )
+    echohl Error
+    echo "Cannot delete a help buffer!"
+    echohl None
+    return -1
+  else
+    let theFile=expand('%:p')
+  endif
+  let delStatus=delete(theFile)
+  if(delStatus == 0)
+    echo "Deleted " . theFile
+  else
+    echohl WarningMsg
+    echo "Failed to delete " . theFile
+    echohl None
+  endif
+  return delStatus
+endfunction
+"delete the current file
+com! Rm call DeleteFile()
+"delete the file and quit the buffer (quits vim if this was the last file)
+com! RM call DeleteFile() <Bar> q!
 
 " This utilizes the power of BufOnly: basically if :qa throws
 " errors, close all non-modified buffers (including the
@@ -201,7 +236,7 @@ nn <Leader>n :NERDTreeToggle<CR>
 nn <Leader>cb :BufOnly<CR>:bd <cr>
 
 " Ack
-nn <Leader>f :Ack!
+nn <Leader>f :Ack!<space>
 
 " move through virtual lines, rows as determined by terminal even if wrapped
 nn j gj
@@ -210,8 +245,14 @@ nn k gk
 nn gj j
 nn gk k
 
+" remove trailing whitespace
+nn <leader>r :%s/\s\+$//<CR>
+
 " backspace turns off search highlighting.
 nn <silent> <BS> :nohls<CR>
+
+" Keep the cursor in place while joining lines
+nnoremap J mzJ`z
 
 " Yank to end of line
 nn Y y$
@@ -226,6 +267,8 @@ vn : ;
 :imap jk <Esc><Esc>
 :inoremap jk <esc><esc>
 
+" This doesn't actually work for me... neither does the regular
+" sudo tee command
 " command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
 source ~/.vimrc.local
