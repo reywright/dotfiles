@@ -8,18 +8,14 @@ Bundle 'gmarik/vundle'
 " My Bundles here:
 Bundle "vim-scripts/UltiSnips"
 Bundle 'rey-wright/ultisnips-snippets.git'
-Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-fugitive'
-Bundle 'ervandew/supertab'
-" Bundle 'vim-scripts/AutoComplPop'
 Bundle 'mileszs/ack.vim'
 Bundle 'vim-scripts/matchit.zip'
 Bundle 'tomtom/tcomment_vim'
-Bundle 'Valloric/MatchTagAlways'
-Bundle 'Raimondi/delimitMate'
+Bundle 'kana/vim-smartinput'
 Bundle 'Rykka/colorv.vim'
-Bundle 'Lokaltog/vim-powerline'
+Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
@@ -27,16 +23,35 @@ Bundle 'godlygeek/tabular'
 Bundle 'vim-scripts/BufOnly.vim'
 Bundle 'sjl/gundo.vim'
 Bundle 'dahu/LearnVim'
+Bundle 'rstacruz/sparkup'
 Bundle 'vim-scripts/ZoomWin'
+Bundle 'ingo-library'
+Bundle 'CycleColor'
+Bundle 'takac/vim-hardtime'
+Bundle 'kana/vim-arpeggio'
+Bundle 'fholgado/minibufexpl.vim'
+Bundle 'sheerun/vim-polyglot'
+Bundle 'mattn/emmet-vim'
+" Bundle 'ervandew/supertab'
+" Bundle 'vim-scripts/AutoComplPop'
+" Bundle 'mattn/zencoding-vim'
+" Bundle 'bling/vim-bufferline'
+" Bundle 'mhinz/vim-signify'
+" Bundle 'vim-scripts/svndiff'
+" Bundle 'ProportionalResize'
 
 " colorschemes:
 Bundle 'rey-wright/argokai'
-" Take the diff colors then delete hybrid
+Bundle 'altercation/vim-colors-solarized'
 Bundle 'w0ng/vim-hybrid'
 Bundle 'noahfrederick/Hemisu'
-
-" powerline color schemes
-Bundle 'zaki/zazen-powerline'
+Bundle 'tomasr/molokai'
+Bundle 'nanotech/jellybeans.vim'
+Bundle 'Pychimp/vim-luna'
+Bundle 'zefei/cake16'
+Bundle 'flazz/vim-colorschemes'
+Bundle 'chriskempson/vim-tomorrow-theme'
+Bundle 'john2x/flatui.vim'
 
 filetype plugin indent on   " required!
 syntax enable
@@ -48,6 +63,7 @@ set showmode                            " Display the mode you're in.
 set backspace=indent,eol,start          " Intuitive backspacing.
 
 set hidden                              " Handle multiple buffers better.
+set nowrap
 
 set wildmenu                            " Enhanced command line completion.
 set wildmode=list:longest               " Complete files like a shell.
@@ -95,23 +111,20 @@ set nojoinspaces                        " this SHOULD replace the mapping I made
 
 set autoindent
 set copyindent
-set showbreak=↪\  
+set showbreak=↪\ 
 set splitright                          " The active split is now on the right / bottom for
 set splitbelow                          " vertical / horizontal splits respectively. To
 cabbrev vsl lefta vs                    " get native functionality, use the maps provited
 cabbrev spt abo sp
 
 " using this to get line autocompletion to not automatically select the first option
-set cot+=longest
+" set cot+=longest
 
 " I do not want to see any of this stuff when I'm searching for files
 set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz,*/.sass-cache/*
 set wildignore+=*.php*
 set wildignore+=*.swp,*~,._*
-
-set list
-set listchars=precedes:<,extends:>,tab:\|-,trail:· list
 
 " Tim pope says it's a smart default?
 " I guess I'll play with it, make a decision
@@ -123,6 +136,8 @@ if !&sidescrolloff
   set sidescrolloff=5
 endif
 set display+=lastline
+
+let g:svndiff_autoupdate = 1
 
 let g:SuperTabCrMapping = 0
 
@@ -150,10 +165,17 @@ nn <Leader>j <c-w>j
 nn <Leader>k <c-w>k
 nn <Leader>l <c-w>l
 
-" Powerline
-let g:Powerline_symbols = 'fancy'
-let g:Powerline_colorscheme = 'zazen'
-call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
+" Split a line
+" nn <leader>e i<CR><ESC>k$
+
+" Airline
+" let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts=0
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#fnamemod = ':t'
+
+" MiniBufExp
+let g:miniBufExplBRSplit = 0
 
 " Ultisnips
 let g:UltiSnipsSnippetDirectories=["bundle/ultisnips-snippets/my_snippets"]
@@ -163,6 +185,9 @@ nn <leader>ue :UltiSnipsEdit<CR>
 " ColorV
 nn <leader>ce :ColorVEdit<CR>
 let g:colorv_preview_ftype = 'css,html,javascript,sass'
+
+" ZenCoding
+" let g:user_zen_leader_key = '<leader>y'
 
 " Gundo
 nn <leader>u :GundoToggle<CR>
@@ -229,9 +254,6 @@ nn <leader>x :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> tr
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-" NerdTree Toggle
-nn <Leader>n :NERDTreeToggle<CR>
-
 " BufOnly
 nn <Leader>cb :BufOnly<CR>:bd <cr>
 
@@ -270,5 +292,7 @@ vn : ;
 " This doesn't actually work for me... neither does the regular
 " sudo tee command
 " command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+"
+let g:airline_powerline_fonts = 1
 
 source ~/.vimrc.local
