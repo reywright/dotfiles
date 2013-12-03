@@ -1,8 +1,9 @@
 " Make MacVim / gVim pretty
 
-colo hybrid
+colo argokai
+colo argokai
 
-set guifont=Powerline\ Consolas:h14
+set guifont=Ubuntu\ Mono\ derivative\ Powerline:h14
 
 if has("gui_running")
     set guioptions-=T

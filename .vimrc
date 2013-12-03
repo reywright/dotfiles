@@ -1,163 +1,257 @@
 " Brought to you by Vundle
-set nocp
+set nocompatible
 filetype off
+
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-Bundle 'gmarik/vundle'
 
 " My Bundles here:
-Bundle "vim-scripts/UltiSnips"
-Bundle 'rey-wright/ultisnips-snippets.git'
-Bundle 'kien/ctrlp.vim'
+Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
-Bundle 'mileszs/ack.vim'
-Bundle 'vim-scripts/matchit.zip'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'kana/vim-smartinput'
-Bundle 'Rykka/colorv.vim'
-Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
-Bundle 'godlygeek/tabular'
-Bundle 'vim-scripts/BufOnly.vim'
-Bundle 'sjl/gundo.vim'
-Bundle 'dahu/LearnVim'
-Bundle 'rstacruz/sparkup'
-Bundle 'vim-scripts/ZoomWin'
-Bundle 'ingo-library'
 Bundle 'CycleColor'
-Bundle 'takac/vim-hardtime'
+Bundle 'Rykka/colorv.vim'
+Bundle 'Yggdroot/indentLine'
+Bundle 'dahu/LearnVim'
+Bundle 'dahu/vim_waz_ere'
+Bundle 'ingo-library'
+Bundle 'junegunn/vim-easy-align'
 Bundle 'kana/vim-arpeggio'
-Bundle 'fholgado/minibufexpl.vim'
-Bundle 'sheerun/vim-polyglot'
+" Bundle 'kana/vim-smartinput'
+Bundle 'kien/ctrlp.vim'
 Bundle 'mattn/emmet-vim'
+Bundle 'mileszs/ack.vim'
+Bundle 'rey-wright/ultisnips-snippets.git'
+Bundle 'sheerun/vim-polyglot'
+Bundle 'sjl/gundo.vim'
+Bundle 'takac/vim-hardtime'
+Bundle 'tomtom/tcomment_vim'
+Bundle 'vim-scripts/BufOnly.vim'
+Bundle 'SirVer/ultisnips'
+Bundle 'vim-scripts/ZoomWin'
+Bundle 'vim-scripts/matchit.zip'
+Bundle 'osyo-manga/vim-over'
+" Bundle 'liujoey/vim-easymotion'
+" Bundle 'Shougo/neocomplete.vim'
+" Bundle 'Valloric/YouCompleteMe'
+" Bundle 'rstacruz/vim-ultisnips-css'
+" Bundle 'stephenmckinney/ultisnips-snippets'
+" Bundle 'rhysd/clever-f.vim'
+" Bundle 'fholgado/minibufexpl.vim'
+" Bundle 'bling/vim-airline'
 " Bundle 'ervandew/supertab'
 " Bundle 'vim-scripts/AutoComplPop'
-" Bundle 'mattn/zencoding-vim'
-" Bundle 'bling/vim-bufferline'
 " Bundle 'mhinz/vim-signify'
 " Bundle 'vim-scripts/svndiff'
-" Bundle 'ProportionalResize'
 
 " colorschemes:
 Bundle 'rey-wright/argokai'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'w0ng/vim-hybrid'
-Bundle 'noahfrederick/Hemisu'
-Bundle 'tomasr/molokai'
-Bundle 'nanotech/jellybeans.vim'
 Bundle 'Pychimp/vim-luna'
-Bundle 'zefei/cake16'
-Bundle 'flazz/vim-colorschemes'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'baskerville/bubblegum'
+Bundle 'bclear'
 Bundle 'chriskempson/vim-tomorrow-theme'
-Bundle 'john2x/flatui.vim'
+Bundle 'flazz/vim-colorschemes'
+Bundle 'junegunn/seoul256.vim'
+" Bundle 'chriskempson/base16-vim'
+" Bundle 'summerfruit256.vim'
+" Bundle 'w0ng/vim-hybrid'
 
+"Enable file type detection and load plugin indent files
+filetype plugin on
 filetype plugin indent on   " required!
-syntax enable
 
-set background=light "for Hemisu
-set showcmd                             " Display incomplete commands.
-set showmode                            " Display the mode you're in.
-
-set backspace=indent,eol,start          " Intuitive backspacing.
-
-set hidden                              " Handle multiple buffers better.
-set nowrap
-
-set wildmenu                            " Enhanced command line completion.
-set wildmode=list:longest               " Complete files like a shell.
-
-set ignorecase                          " Case-insensitive searching.
-set smartcase                           " But case-sensitive if expression contains a capital letter.
-
-set number                              " Show absolute line numbers (cf. relativenumber).
-set ruler                               " Show cursor position.
-set laststatus=2                        " Always show a status line.
-
-set incsearch                           " Highlight matches as you type.
-set hlsearch                            " Highlight matches.
-
-set nowrap                              " Turn off line wrapping.
-" set scrolloff=3                       " Show 3 lines of context around the cursor.
-
-set shiftwidth=4                        "
-set softtabstop=4
-set tabstop=4                           " Tabs and spaces.
-set expandtab                           "
-
-set nrformats=                          " This will cause Vim to treat all numerals
-                                        " As decimal, regarless whether they are
-                                        " padded with zeros.
-
-set title                               " Set the terminal's title
-
-set visualbell                          " No beeping.
-
-set nobackup                            " No backups.
-set nowritebackup                       " No backups.
-set noswapfile                          " No swap files; more hassle than they're worth.
-
-set tildeop                             " Make tilde command behave like an operator.
-set shortmess=atI                       " Avoid unnecessary hit-enter prompts.
-
-set autoread                            " Automatically re-read files changed outside Vim.
-
-set notimeout                           " Don't time out partially entered mapped key sequences.
-set ttimeout                            " But do time out key codes.
-set noequalalways
-
-set nojoinspaces                        " this SHOULD replace the mapping I made above
-
-set autoindent
-set copyindent
-set showbreak=↪\ 
-set splitright                          " The active split is now on the right / bottom for
-set splitbelow                          " vertical / horizontal splits respectively. To
-cabbrev vsl lefta vs                    " get native functionality, use the maps provited
-cabbrev spt abo sp
-
-" using this to get line autocompletion to not automatically select the first option
-" set cot+=longest
-
-" I do not want to see any of this stuff when I'm searching for files
-set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
-set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz,*/.sass-cache/*
-set wildignore+=*.php*
-set wildignore+=*.swp,*~,._*
-
-" Tim pope says it's a smart default?
-" I guess I'll play with it, make a decision
-" later.
-if !&scrolloff
-  set scrolloff=1
-endif
-if !&sidescrolloff
-  set sidescrolloff=5
-endif
-set display+=lastline
-
-let g:svndiff_autoupdate = 1
-
-let g:SuperTabCrMapping = 0
-
-" Delimitmate
-let delimitMate_expand_cr = 1
-
-" http://morearty.com/blog/2013/01/22/fixing-vims-indenting-of-html-files.html
-" Vim’s default indentation for HTML has a pretty severe quirk:
-" When you press return after a tag  already created Vim will unindent the new line and the previous line.
-" With the following line, pressing the return key will only set the indentation on the newly created line.
-autocmd FileType html setlocal indentkeys-=*<Return>
-
-nnoremap <SPACE> <Nop>
+" Set <space> as <leader> instead of default backslash
 let mapleader = " "
 
-" Save files easier
-nn <leader>w <esc>:w<cr>
 
-" Tabularize
-vn <leader>t :Tabularize /
+" =============================================================================
+" Editing
+" =============================================================================
+
+""
+"" Whitespace
+""
+
+set expandtab                           "
+set tabstop=4                           " Tabs and spaces.
+set shiftwidth=4                        "
+set softtabstop=4
+set autoindent
+
+" Backspace over everything in insert mode
+set backspace=indent,eol,start
+
+" Invisible characters
+"set listchars=tab:▸\ ,nbsp:_
+"set listchars=tab:\ \ ,trail:·,eol:¬,nbsp:_,extends:❯,precedes:❮
+set list
+set listchars=tab:▸\ ,trail:·,nbsp:_,extends:❯,precedes:❮
+
+
+""
+"" Wrapping
+""
+
+set nowrap  " Turn off line wrapping.
+set showbreak=↪\  " Character to precede line wraps
+
+
+" Always move down and up by display lines instead of real lines
+nnoremap <silent>j gj
+nnoremap <silent>k gk
+" and when those wrapped lines are massive, do this!
+nnoremap gj j
+nnoremap gk k
+
+""
+"" Joining
+""
+
+" Use only 1 space after "." when joining lines instead of 2
+set nojoinspaces
+
+
+""
+"" Other
+""
+
+" Don't reset cursor to start of line when moving around
+set nostartofline
+
+" Do not jump to the matching bracket upon bracket insert (default)
+set noshowmatch
+
+
+" =============================================================================
+" Appearance
+" =============================================================================
+
+set cursorline      " Highlight current line
+set scrolloff=5     " Keep more buffer context when scrolling
+set showtabline=2   " Always show the tab bar
+set cmdheight=1     " Set command line height (default)
+set title           " Show the filename in the window titlebar
+set t_Co=256        " 256 colors
+set background=dark " Dark background
+syntax on           " Enable syntax highlighting
+set noerrorbells    " Disable error bells
+set shortmess=atI   " Don't show the Vim intro message
+set number          " Show line numbers
+set relativenumber
+set laststatus=2    " Always show a status line.
+set statusline=%t\ %<\ %m%r%y
+
+
+" =============================================================================
+" Command Line
+" =============================================================================
+
+
+" Display incomplete commands below the status line
+set showcmd
+
+" Default shell and shell syntax
+set shell=bash
+let g:is_bash=1
+
+" Remember more commands and search history (default: 20)
+set history=100
+
+" Set <c-n> and <c-p> to act like Up/Down so will filter command history
+" Practical Vim p.69
+" cnoremap <c-p> <up>
+" cnoremap <c-n> <down>
+
+" <c-a> jumps to beginning of line to match <c-e>
+cnoremap <c-a> <home>
+
+" Open help in a vertical split instead of the default horizontal split
+" http://vim.wikia.com/wiki/Replace_a_builtin_command_using_cabbrev
+cabbrev h <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'vert h' : 'h')<cr>
+cabbrev help <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'vert h' : 'help')<cr>
+
+" Expand %% to current directory
+" http://vimcasts.org/e/14
+cnoremap %% <C-R>=expand('%:h').'/'<cr>"
+
+""
+""  Wildmode
+""
+
+" Make tab completion for files/buffers act like bash
+set wildmenu
+
+" Use emacs-style tab completion when selecting files, etc
+set wildmode=longest,list
+
+" Disable output and VCS files
+set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
+
+" Disable archive files
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
+
+" Ignore bundler and sass cache
+set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
+
+" Ignore rails temporary asset caches
+set wildignore+=*/tmp/cache/assets/*/sprockets/*,*/tmp/cache/assets/*/sass/*
+
+" Ignore node modules
+set wildignore+=node_modules/*
+
+" Disable temp and backup files
+set wildignore+=*.swp,*~,._*
+
+
+""
+""  Search
+""
+
+" set hlsearch   " Highlight searches
+set incsearch  " Highlight dynamically as pattern is typed
+set ignorecase " Make searches case-insensitive...
+set smartcase  " ...unless they contain at least one uppercase character
+set gdefault   " Use global search by default
+
+" Clear last search highlighting with enter and clear the command line
+" function! MapCR()
+"   nnoremap <cr> :nohlsearch<cr>:<backspace>
+" endfunction
+" call MapCR()
+
+" Re-highlight last search pattern
+nnoremap <leader>hs :set hlsearch<cr>
+
+
+" =============================================================================
+" Buffers
+" =============================================================================
+
+" Allow unsaved background buffers and remember marks/undo for them
+set hidden
+
+" Jump to the first open window that contains the specified buffer
+set switchbuf=useopen
+
+" Auto-reload buffers when files are changed on disk
+set autoread
+
+" Toggle current and alternate buffers
+nnoremap <leader><leader> <c-^>
+
+" =============================================================================
+" Windows
+" =============================================================================
+
+" Split windows below and right instead of above and left
+set splitbelow splitright
+
+" get native functionality, use the maps provited
+cabbrev vsl lefta vs
+cabbrev spt abo sp
 
 " Window pane navigation shortcut
 nn <Leader>h <c-w>h
@@ -165,17 +259,109 @@ nn <Leader>j <c-w>j
 nn <Leader>k <c-w>k
 nn <Leader>l <c-w>l
 
-" Split a line
-" nn <leader>e i<CR><ESC>k$
+" =============================================================================
+" Registers
+" =============================================================================
+
+" Use the OS clipboard by default
+" set clipboard=unnamed
+
+" Copy to X11 primary clipboard
+" map <leader>y "*y
+
+" Paste from unnamed register and fix indentation
+" nmap <leader>p pV`]=
+
+
+" =============================================================================
+" Backup
+" =============================================================================
+
+" Don't make a backup before overwriting a file
+set nobackup
+set nowritebackup
+
+" Disable swap files
+set updatecount=0
+
+" =============================================================================
+" Filetypes and Custom Autocmds
+" =============================================================================
+
+" set fileformats=unix,dos,mac
+
+augroup vimrcEx
+  " Clear all autocmds for the current group
+  autocmd!
+
+  " Jump to last cursor position unless it's invalid or in an event handler or
+  " a git commit
+  au BufReadPost *
+    \ if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+
+  " Some file types use real tabs
+  au FileType {make,gitconfig} set noexpandtab sw=4
+
+  " Treat JSON files like JavaScript
+  au BufNewFile,BufRead *.json setf javascript
+
+  " Make Python follow PEP8
+  au FileType python set sts=4 ts=4 sw=4 tw=79
+
+  " Leave the return key alone when in command line windows, since it's used
+  " to run commands there
+  au! CmdwinEnter * :unmap <cr>
+  au! CmdwinLeave * :call MapCR()
+augroup END
+
+" =============================================================================
+" Plugin Settings and Mappings
+" =============================================================================
+
+
+""
+"" indentLine
+""
+
+let g:indentLine_faster = 1
+let g:indentLine_fileType = ['html', 'htmldjango']
+
+""
+"" Emmet
+""
+
+" let g:user_emmet_leader_key = '<tab>'
+let g:user_emmet_install_global = 0
+" autocmd FileType html,htmldjango,css,scss,sass EmmetInstall
+
+" autocmd FileType html,htmldjango,css,scss,sass imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+
+""
+"" Fugitive
+""
+
+nnoremap <leader>gb :Gblame<cr>
+nnoremap <leader>gc :Gcommit<cr>
+nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>gl :Glog<cr>
+nnoremap <leader>gp :Git push<cr>
+nnoremap <leader>gs :Git status -sb<cr>
+
+""
+"" Matchit
+""
+
+" Enable Matchit to use % to jump between def/end, if/else/end
+runtime macros/matchit.vim
+
 
 " Airline
-" let g:airline_powerline_fonts = 1
-let g:airline_powerline_fonts=0
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_powerline_fonts=1
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
 
-" MiniBufExp
-let g:miniBufExplBRSplit = 0
 
 " Ultisnips
 let g:UltiSnipsSnippetDirectories=["bundle/ultisnips-snippets/my_snippets"]
@@ -185,6 +371,9 @@ nn <leader>ue :UltiSnipsEdit<CR>
 " ColorV
 nn <leader>ce :ColorVEdit<CR>
 let g:colorv_preview_ftype = 'css,html,javascript,sass'
+
+" Hardtime
+let g:hardtime_default_on = 1
 
 " ZenCoding
 " let g:user_zen_leader_key = '<leader>y'
@@ -208,6 +397,39 @@ func! s:DeleteBuffer()
     exec "bd" fnamemodify(getline('.')[2:], ':p')
     exec "norm \<F5>"
 endfunc
+
+" Arpeggio
+call arpeggio#map('i', '', 0, 'jk', '<Esc>')
+
+" BufOnly
+nn <Leader>cb :BufOnly<CR>:bd <cr>
+
+" Ack
+nn <Leader>f :Ack!<space>
+
+
+" using this to get line autocompletion to not automatically select the first option
+" set cot+=longest
+
+let g:svndiff_autoupdate = 1
+
+let g:SuperTabCrMapping = 0
+
+
+" http://morearty.com/blog/2013/01/22/fixing-vims-indenting-of-html-files.html
+" Vim’s default indentation for HTML has a pretty severe quirk:
+" When you press return after a tag  already created Vim will unindent the new line and the previous line.
+" With the following line, pressing the return key will only set the indentation on the newly created line.
+autocmd FileType html setlocal indentkeys-=*<Return>
+
+nnoremap <SPACE> <Nop>
+
+" Save files easier
+nn <leader>w <esc>:w<cr>
+
+
+" Split a line
+" nn <leader>e i<CR><ESC>k$
 
 function! DeleteFile(...)
   if(exists('a:1'))
@@ -254,24 +476,12 @@ nn <leader>x :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> tr
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-" BufOnly
-nn <Leader>cb :BufOnly<CR>:bd <cr>
-
-" Ack
-nn <Leader>f :Ack!<space>
-
-" move through virtual lines, rows as determined by terminal even if wrapped
-nn j gj
-nn k gk
-" and when those wrapped lines are massive, do this!
-nn gj j
-nn gk k
 
 " remove trailing whitespace
 nn <leader>r :%s/\s\+$//<CR>
 
 " backspace turns off search highlighting.
-nn <silent> <BS> :nohls<CR>
+" nn <silent> <BS> :nohls<CR>
 
 " Keep the cursor in place while joining lines
 nnoremap J mzJ`z
@@ -286,13 +496,25 @@ vn ; :
 vn : ;
 
 " Map escape to jk
-:imap jk <Esc><Esc>
-:inoremap jk <esc><esc>
+" :imap jk <Esc><Esc>
+" :inoremap jk <esc><esc>
 
-" This doesn't actually work for me... neither does the regular
-" sudo tee command
-" command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
-"
-let g:airline_powerline_fonts = 1
+cmap w!! w !sudo tee % >/dev/null
+
+
+set nrformats=                          " This will cause Vim to treat all numerals
+                                        " As decimal, regarless whether they are
+                                        " padded with zeros.
+
+set visualbell                          " No beeping.
+
+
+set tildeop                             " Make tilde command behave like an operator.
+
+set notimeout                           " Don't time out partially entered mapped key sequences.
+set ttimeout                            " But do time out key codes.
+set noequalalways
+
+colo argokai
 
 source ~/.vimrc.local
