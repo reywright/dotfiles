@@ -1,67 +1,82 @@
-" Brought to you by Vundle
-set nocompatible
-filetype off
+if has('vim_starting')
+    set nocompatible
+    set rtp+=~/.vim/bundle/neobundle.vim
+endif
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
 
-" My Bundles here:
-Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-repeat'
-Bundle 'CycleColor'
-Bundle 'Rykka/colorv.vim'
-Bundle 'Yggdroot/indentLine'
-Bundle 'dahu/LearnVim'
-Bundle 'dahu/vim_waz_ere'
-Bundle 'ingo-library'
-Bundle 'junegunn/vim-easy-align'
-Bundle 'kana/vim-arpeggio'
-" Bundle 'kana/vim-smartinput'
-Bundle 'kien/ctrlp.vim'
-Bundle 'mattn/emmet-vim'
-Bundle 'mileszs/ack.vim'
-Bundle 'rey-wright/ultisnips-snippets.git'
-Bundle 'sheerun/vim-polyglot'
-Bundle 'sjl/gundo.vim'
-Bundle 'takac/vim-hardtime'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'vim-scripts/BufOnly.vim'
-Bundle 'SirVer/ultisnips'
-Bundle 'vim-scripts/ZoomWin'
-Bundle 'vim-scripts/matchit.zip'
-Bundle 'osyo-manga/vim-over'
-" Bundle 'liujoey/vim-easymotion'
-" Bundle 'Shougo/neocomplete.vim'
-" Bundle 'Valloric/YouCompleteMe'
-" Bundle 'rstacruz/vim-ultisnips-css'
-" Bundle 'stephenmckinney/ultisnips-snippets'
-" Bundle 'rhysd/clever-f.vim'
-" Bundle 'fholgado/minibufexpl.vim'
-" Bundle 'bling/vim-airline'
-" Bundle 'ervandew/supertab'
-" Bundle 'vim-scripts/AutoComplPop'
-" Bundle 'mhinz/vim-signify'
-" Bundle 'vim-scripts/svndiff'
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" My Plugins here:
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-unimpaired'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'CycleColor'
+" NeoBundle 'Rykka/colorv.vim'
+NeoBundle 'Yggdroot/indentLine'
+NeoBundle 'dahu/LearnVim'
+NeoBundle 'dahu/vim_waz_ere'
+NeoBundle 'ingo-library'
+NeoBundle 'junegunn/vim-easy-align'
+NeoBundle 'kana/vim-arpeggio'
+" NeoBundle 'kana/vim-smartinput'
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'mattn/emmet-vim'
+NeoBundle 'mileszs/ack.vim'
+NeoBundle 'rey-wright/ultisnips-snippets.git'
+NeoBundle 'sheerun/vim-polyglot'
+NeoBundle 'sjl/gundo.vim'
+NeoBundle 'tomtom/tcomment_vim'
+NeoBundle 'vim-scripts/BufOnly.vim'
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'vim-scripts/ZoomWin'
+NeoBundle 'vim-scripts/matchit.zip'
+NeoBundle 'osyo-manga/vim-over'
+" NeoBundle 'liujoey/vim-easymotion'
+" NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/vimproc', {
+      \ 'build' : {
+      \     'windows' : 'make -f make_mingw32.mak',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
+
+NeoBundle 'AndrewRadev/splitjoin.vim'
+" NeoBundle 'Valloric/YouCompleteMe'
+" NeoBundle 'rstacruz/vim-ultisnips-css'
+" NeoBundle 'stephenmckinney/ultisnips-snippets'
+" NeoBundle 'rhysd/clever-f.vim'
+" NeoBundle 'fholgado/minibufexpl.vim'
+" NeoBundle 'bling/vim-airline'
+" NeoBundle 'ervandew/supertab'
+" NeoBundle 'vim-scripts/AutoComplPop'
+" NeoBundle 'mhinz/vim-signify'
+" NeoBundle 'vim-scripts/svndiff'
 
 " colorschemes:
-Bundle 'rey-wright/argokai'
-Bundle 'Pychimp/vim-luna'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'baskerville/bubblegum'
-Bundle 'bclear'
-Bundle 'chriskempson/vim-tomorrow-theme'
-Bundle 'flazz/vim-colorschemes'
-Bundle 'junegunn/seoul256.vim'
-" Bundle 'chriskempson/base16-vim'
-" Bundle 'summerfruit256.vim'
-" Bundle 'w0ng/vim-hybrid'
+NeoBundle 'rey-wright/argokai'
+NeoBundle 'Pychimp/vim-luna'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'baskerville/bubblegum'
+NeoBundle 'bclear'
+NeoBundle 'chriskempson/vim-tomorrow-theme'
+NeoBundle 'flazz/vim-colorschemes'
+NeoBundle 'junegunn/seoul256.vim'
+" NeoBundle 'chriskempson/base16-vim'
+" NeoBundle 'summerfruit256.vim'
+" NeoBundle 'w0ng/vim-hybrid'
+"
+call neobundle#end()
 
-"Enable file type detection and load plugin indent files
-filetype plugin on
 filetype plugin indent on   " required!
+
+NeoBundleCheck
 
 " Set <space> as <leader> instead of default backslash
 let mapleader = " "
@@ -170,8 +185,8 @@ cnoremap <c-a> <home>
 
 " Open help in a vertical split instead of the default horizontal split
 " http://vim.wikia.com/wiki/Replace_a_builtin_command_using_cabbrev
-cabbrev h <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'vert h' : 'h')<cr>
-cabbrev help <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'vert h' : 'help')<cr>
+" cabbrev h <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'vert h' : 'h')<cr>
+" cabbrev help <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'vert h' : 'help')<cr>
 
 " Expand %% to current directory
 " http://vimcasts.org/e/14
@@ -290,31 +305,31 @@ set updatecount=0
 
 " set fileformats=unix,dos,mac
 
-augroup vimrcEx
-  " Clear all autocmds for the current group
-  autocmd!
-
-  " Jump to last cursor position unless it's invalid or in an event handler or
-  " a git commit
-  au BufReadPost *
-    \ if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
-
-  " Some file types use real tabs
-  au FileType {make,gitconfig} set noexpandtab sw=4
-
-  " Treat JSON files like JavaScript
-  au BufNewFile,BufRead *.json setf javascript
-
-  " Make Python follow PEP8
-  au FileType python set sts=4 ts=4 sw=4 tw=79
-
-  " Leave the return key alone when in command line windows, since it's used
-  " to run commands there
-  au! CmdwinEnter * :unmap <cr>
-  au! CmdwinLeave * :call MapCR()
-augroup END
+" augroup vimrcEx
+"   " Clear all autocmds for the current group
+"   autocmd!
+"
+"   " Jump to last cursor position unless it's invalid or in an event handler or
+"   " a git commit
+"   au BufReadPost *
+"     \ if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$") |
+"     \   exe "normal! g`\"" |
+"     \ endif
+"
+"   " Some file types use real tabs
+"   au FileType {make,gitconfig} set noexpandtab sw=4
+"
+"   " Treat JSON files like JavaScript
+"   au BufNewFile,BufRead *.json setf javascript
+"
+"   " Make Python follow PEP8
+"   au FileType python set sts=4 ts=4 sw=4 tw=79
+"
+"   " Leave the return key alone when in command line windows, since it's used
+"   " to run commands there
+"   au! CmdwinEnter * :unmap <cr>
+"   au! CmdwinLeave * :call MapCR()
+" augroup END
 
 " =============================================================================
 " Plugin Settings and Mappings
@@ -364,8 +379,9 @@ let g:airline#extensions#tabline#enabled = 1
 
 
 " Ultisnips
-let g:UltiSnipsSnippetDirectories=["bundle/ultisnips-snippets/my_snippets"]
-let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsSnippetsDir= '~/.vim/bundle/ultisnips-snippets/my_snippets'
+" let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'my_snippets']
+" let g:UltiSnipsExpandTrigger="<tab>"
 nn <leader>ue :UltiSnipsEdit<CR>
 
 " ColorV
@@ -404,9 +420,48 @@ call arpeggio#map('i', '', 0, 'jk', '<Esc>')
 " BufOnly
 nn <Leader>cb :BufOnly<CR>:bd <cr>
 
+" Unite
+
+let g:unite_source_history_yank_enable = 1
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
+" nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
+nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
+nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
+nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
+" nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
+nnoremap <leader>e :<C-u>Unite -no-split -quick-match buffer<cr>
+nnoremap <leader>/ :Unite grep:.<cr>
+
+" Custom mappings for the unite buffer
+autocmd FileType unite call s:unite_settings()
+function! s:unite_settings()
+  " Play nice with supertab
+  let b:SuperTabDisabled=1
+  " Enable navigation with control-j and control-k in insert mode
+  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+endfunction
+
+" Use ag for search
+if executable('ag')
+  " let g:unite_source_grep_command = 'ag'
+  " let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+  " let g:unite_source_grep_recursive_opt = ''
+  " Use ag in unite grep source.
+  " let g:unite_source_grep_command = 'ag'
+  " let g:unite_source_grep_default_opts =
+  " \ '--line-numbers --nocolor --nogroup --hidden --ignore ' .
+  " \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+  " let g:unite_source_grep_recursive_opt = ''
+   let g:unite_source_rec_async_command = 'ag -l .'
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--smart-case --nogroup --nocolor --line-numbers'
+  let g:unite_source_grep_recursive_opt = ''"
+endif
+
 " Ack
 nn <Leader>f :Ack!<space>
-
 
 " using this to get line autocompletion to not automatically select the first option
 " set cot+=longest
@@ -478,7 +533,7 @@ nn <leader>x :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> tr
 
 
 " remove trailing whitespace
-nn <leader>r :%s/\s\+$//<CR>
+" nn <leader>r :%s/\s\+$//<CR>
 
 " backspace turns off search highlighting.
 " nn <silent> <BS> :nohls<CR>
