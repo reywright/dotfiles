@@ -1,82 +1,111 @@
-if has('vim_starting')
-    set nocompatible
-    set rtp+=~/.vim/bundle/neobundle.vim
-endif
+call plug#begin('~/.vim/plugged')
 
-" Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
+" Colorschemes
+Plug 'rey-wright/argokai'
+Plug 'junegunn/seoul256.vim'
+Plug 'DAddYE/soda.vim'
+Plug 'abra/vim-abra'
+Plug 'AssailantLF/blackwolf'
 
-NeoBundleFetch 'Shougo/neobundle.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-eunuch'
 
-" My Plugins here:
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-unimpaired'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'CycleColor'
-" NeoBundle 'Rykka/colorv.vim'
-NeoBundle 'Yggdroot/indentLine'
-NeoBundle 'dahu/LearnVim'
-NeoBundle 'dahu/vim_waz_ere'
-NeoBundle 'ingo-library'
-NeoBundle 'junegunn/vim-easy-align'
-NeoBundle 'kana/vim-arpeggio'
-" NeoBundle 'kana/vim-smartinput'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'mattn/emmet-vim'
-NeoBundle 'mileszs/ack.vim'
-NeoBundle 'rey-wright/ultisnips-snippets.git'
-NeoBundle 'sheerun/vim-polyglot'
-NeoBundle 'sjl/gundo.vim'
-NeoBundle 'tomtom/tcomment_vim'
-NeoBundle 'vim-scripts/BufOnly.vim'
-NeoBundle 'SirVer/ultisnips'
-NeoBundle 'vim-scripts/ZoomWin'
-NeoBundle 'vim-scripts/matchit.zip'
-NeoBundle 'osyo-manga/vim-over'
-" NeoBundle 'liujoey/vim-easymotion'
-" NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'Shougo/vimproc', {
-      \ 'build' : {
-      \     'windows' : 'make -f make_mingw32.mak',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
+Plug 'jlanzarotta/bufexplorer'
+Plug 'junegunn/vim-easy-align'
+Plug 'kien/ctrlp.vim'
+Plug 'vim-polyglot'
+Plug 'myusuf3/numbers.vim'
+Plug 'jeetsukumaran/vim-filebeagle'
+Plug 'mhinz/vim-Startify'
+Plug 'ervandew/supertab'
+Plug 'mbbill/undotree'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tommcdo/vim-exchange'
+Plug 'fholgado/minibufexpl.vim'
 
-NeoBundle 'AndrewRadev/splitjoin.vim'
-" NeoBundle 'Valloric/YouCompleteMe'
-" NeoBundle 'rstacruz/vim-ultisnips-css'
-" NeoBundle 'stephenmckinney/ultisnips-snippets'
-" NeoBundle 'rhysd/clever-f.vim'
-" NeoBundle 'fholgado/minibufexpl.vim'
-" NeoBundle 'bling/vim-airline'
-" NeoBundle 'ervandew/supertab'
-" NeoBundle 'vim-scripts/AutoComplPop'
-" NeoBundle 'mhinz/vim-signify'
-" NeoBundle 'vim-scripts/svndiff'
+" maybe not
+"Plug 'bling/vim-airline'
 
-" colorschemes:
-NeoBundle 'rey-wright/argokai'
-NeoBundle 'Pychimp/vim-luna'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'baskerville/bubblegum'
-NeoBundle 'bclear'
-NeoBundle 'chriskempson/vim-tomorrow-theme'
-NeoBundle 'flazz/vim-colorschemes'
-NeoBundle 'junegunn/seoul256.vim'
-" NeoBundle 'chriskempson/base16-vim'
-" NeoBundle 'summerfruit256.vim'
-" NeoBundle 'w0ng/vim-hybrid'
-"
-call neobundle#end()
+" Completion
+Plug 'mattn/emmet-vim', { 'for': ['html', 'scss'] }
+Plug 'gorodinskiy/vim-coloresque', { 'for': ['html', 'scss'] }
+Plug 'edsono/vim-matchit', { 'for': ['html', 'xml'] }
 
-filetype plugin indent on   " required!
 
-NeoBundleCheck
+call plug#end()
+
+" if has('vim_starting')
+"     set nocompatible
+"     set rtp+=~/.vim/bundle/neobundle.vim
+" endif
+" 
+" " Required:
+" call neobundle#begin(expand('~/.vim/bundle/'))
+" 
+" NeoBundleFetch 'Shougo/neobundle.vim'
+" 
+" " My Plugins here:
+" NeoBundle 'CycleColor'
+" " NeoBundle 'Rykka/colorv.vim'
+" NeoBundle 'Yggdroot/indentLine'
+" NeoBundle 'dahu/LearnVim'
+" NeoBundle 'dahu/vim_waz_ere'
+" NeoBundle 'ingo-library'
+" NeoBundle 'junegunn/vim-easy-align'
+" " NeoBundle 'kana/vim-smartinput'
+" NeoBundle 'mileszs/ack.vim'
+" NeoBundle 'rey-wright/ultisnips-snippets.git'
+" NeoBundle 'sjl/gundo.vim'
+" NeoBundle 'tomtom/tcomment_vim'
+" NeoBundle 'SirVer/ultisnips'
+" NeoBundle 'vim-scripts/ZoomWin'
+" NeoBundle 'vim-scripts/matchit.zip'
+" NeoBundle 'osyo-manga/vim-over'
+" " NeoBundle 'liujoey/vim-easymotion'
+" " NeoBundle 'Shougo/neocomplete.vim'
+" NeoBundle 'Shougo/unite.vim'
+" NeoBundle 'Shougo/neomru.vim'
+" NeoBundle 'Shougo/vimproc', {
+"       \ 'build' : {
+"       \     'windows' : 'make -f make_mingw32.mak',
+"       \     'cygwin' : 'make -f make_cygwin.mak',
+"       \     'mac' : 'make -f make_mac.mak',
+"       \     'unix' : 'make -f make_unix.mak',
+"       \    },
+"       \ }
+" 
+" NeoBundle 'AndrewRadev/splitjoin.vim'
+" " NeoBundle 'Valloric/YouCompleteMe'
+" " NeoBundle 'rstacruz/vim-ultisnips-css'
+" " NeoBundle 'stephenmckinney/ultisnips-snippets'
+" " NeoBundle 'rhysd/clever-f.vim'
+" " NeoBundle 'fholgado/minibufexpl.vim'
+" " NeoBundle 'vim-scripts/AutoComplPop'
+" " NeoBundle 'mhinz/vim-signify'
+" " NeoBundle 'vim-scripts/svndiff'
+" 
+" " colorschemes:
+" NeoBundle 'rey-wright/argokai'
+" NeoBundle 'Pychimp/vim-luna'
+" NeoBundle 'altercation/vim-colors-solarized'
+" NeoBundle 'baskerville/bubblegum'
+" NeoBundle 'bclear'
+" NeoBundle 'chriskempson/vim-tomorrow-theme'
+" NeoBundle 'flazz/vim-colorschemes'
+" NeoBundle 'junegunn/seoul256.vim'
+" " NeoBundle 'chriskempson/base16-vim'
+" " NeoBundle 'summerfruit256.vim'
+" " NeoBundle 'w0ng/vim-hybrid'
+" "
+" call neobundle#end()
+" 
+" filetype plugin indent on   " required!
+" 
+" NeoBundleCheck
 
 " Set <space> as <leader> instead of default backslash
 let mapleader = " "
@@ -238,7 +267,7 @@ set gdefault   " Use global search by default
 " call MapCR()
 
 " Re-highlight last search pattern
-nnoremap <leader>hs :set hlsearch<cr>
+" nnoremap <leader>hs :set hlsearch<cr>
 
 
 " =============================================================================
@@ -365,6 +394,21 @@ nnoremap <leader>gp :Git push<cr>
 nnoremap <leader>gs :Git status -sb<cr>
 
 ""
+"" BufExplorer
+""
+
+let g:miniBufExplVSplit = 18   " column width in chars
+let g:miniBufExplBRSplit = 0   " Put new window above
+let g:miniBufExplBuffersNeeded = 2
+
+""
+"" Numbers
+""
+
+let g:numbers_exclude = ['minibufexpl']
+
+
+""
 "" Matchit
 ""
 
@@ -414,34 +458,8 @@ func! s:DeleteBuffer()
     exec "norm \<F5>"
 endfunc
 
-" Arpeggio
-call arpeggio#map('i', '', 0, 'jk', '<Esc>')
-
 " BufOnly
 nn <Leader>cb :BufOnly<CR>:bd <cr>
-
-" Unite
-
-let g:unite_source_history_yank_enable = 1
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
-" nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
-nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
-nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
-nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
-" nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
-nnoremap <leader>e :<C-u>Unite -no-split -quick-match buffer<cr>
-nnoremap <leader>/ :Unite grep:.<cr>
-
-" Custom mappings for the unite buffer
-autocmd FileType unite call s:unite_settings()
-function! s:unite_settings()
-  " Play nice with supertab
-  let b:SuperTabDisabled=1
-  " Enable navigation with control-j and control-k in insert mode
-  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-endfunction
 
 " Use ag for search
 if executable('ag')
