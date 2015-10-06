@@ -20,19 +20,21 @@ Plug 'kien/ctrlp.vim'
 Plug 'vim-polyglot'
 Plug 'myusuf3/numbers.vim'
 Plug 'jeetsukumaran/vim-filebeagle'
-Plug 'mhinz/vim-Startify'
+" Plug 'mhinz/vim-Startify'
 Plug 'ervandew/supertab'
 Plug 'mbbill/undotree'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tommcdo/vim-exchange'
 Plug 'fholgado/minibufexpl.vim'
+Plug 'xolox/vim-misc'
+Plug 'schickling/vim-bufonly'
+Plug 'rking/ag.vim'
+Plug 'mxw/vim-jsx'
 
-" maybe not
-"Plug 'bling/vim-airline'
-
+Plug 'mileszs/ack.vim'
 " Completion
 Plug 'mattn/emmet-vim', { 'for': ['html', 'scss'] }
-Plug 'gorodinskiy/vim-coloresque', { 'for': ['html', 'scss'] }
+" Plug 'gorodinskiy/vim-coloresque', { 'for': ['html', 'scss'] }
 Plug 'edsono/vim-matchit', { 'for': ['html', 'xml'] }
 
 
@@ -49,7 +51,6 @@ call plug#end()
 " NeoBundleFetch 'Shougo/neobundle.vim'
 " 
 " " My Plugins here:
-" NeoBundle 'CycleColor'
 " " NeoBundle 'Rykka/colorv.vim'
 " NeoBundle 'Yggdroot/indentLine'
 " NeoBundle 'dahu/LearnVim'
@@ -130,9 +131,15 @@ set backspace=indent,eol,start
 
 " Invisible characters
 "set listchars=tab:▸\ ,nbsp:_
-"set listchars=tab:\ \ ,trail:·,eol:¬,nbsp:_,extends:❯,precedes:❮
 set list
-set listchars=tab:▸\ ,trail:·,nbsp:_,extends:❯,precedes:❮
+" set listchars=tab:\ \ ,trail:·,eol:¬,nbsp:_,extends:❯,precedes:❮
+" set listchars=tab:▸\ ,trail:·,nbsp:_,extends:❯,precedes:❮
+" set listchars=tab:\ \ ,:nbsp,trail:·,nbsp:_,extends:❯,precedes:❮
+" set listchars=tab:\¦\ ,trail:·,nbsp:_,extends:❯,precedes:❮
+set listchars=tab:\ \ ,trail:·,nbsp:_,extends:❯,precedes:❮
+" let g:IndentLineSpace = 239
+" hi SpecialKey guifg=#666666 ctermfg=232
+" :set list lcs=tab:\|\
 
 
 ""
@@ -162,6 +169,8 @@ set nojoinspaces
 "" Other
 ""
 
+set shell=zsh
+
 " Don't reset cursor to start of line when moving around
 set nostartofline
 
@@ -186,7 +195,18 @@ set shortmess=atI   " Don't show the Vim intro message
 set number          " Show line numbers
 set relativenumber
 set laststatus=2    " Always show a status line.
-set statusline=%t\ %<\ %m%r%y
+set linespace=5
+
+
+function! PWD()
+    return fnamemodify(getcwd(), ":~")
+endfunction
+
+set laststatus=2
+" set statusline=%#SLDelim#@:%#SLSpecial#%{PWD()}
+set statusline=%t\ %<\ %m%r%y%=CD:%{PWD()}
+
+set stal=0
 
 
 " =============================================================================
@@ -370,7 +390,8 @@ set updatecount=0
 ""
 
 let g:indentLine_faster = 1
-let g:indentLine_fileType = ['html', 'htmldjango']
+let g:indentLine_fileType = ['html', 'htmldjango', 'javascript']
+let g:indentLine_showFirstIndentLevel = 1
 
 ""
 "" Emmet
@@ -381,6 +402,19 @@ let g:user_emmet_install_global = 0
 " autocmd FileType html,htmldjango,css,scss,sass EmmetInstall
 
 " autocmd FileType html,htmldjango,css,scss,sass imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+
+""
+"" File Beagle
+""
+
+let g:filebeagle_suppress_keymaps = 1
+map <silent> -          <Plug>FileBeagleOpenCurrentBufferDir
+
+""
+"" Ag
+""
+"nn <Leader>f :Ag!<space>
+nn <Leader>f :Ag<space>
 
 ""
 "" Fugitive
@@ -397,9 +431,15 @@ nnoremap <leader>gs :Git status -sb<cr>
 "" BufExplorer
 ""
 
-let g:miniBufExplVSplit = 18   " column width in chars
+let g:miniBufExplVSplit = 35   " column width in chars
 let g:miniBufExplBRSplit = 0   " Put new window above
 let g:miniBufExplBuffersNeeded = 2
+
+""
+"" vim-session
+""
+" :let g:session_autosave = 'yes'
+" :let g:session_autoload = 'yes'
 
 ""
 "" Numbers
@@ -419,7 +459,7 @@ runtime macros/matchit.vim
 " Airline
 let g:airline_powerline_fonts=1
 let g:airline#extensions#whitespace#enabled = 0
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 
 
 " Ultisnips
@@ -427,10 +467,6 @@ let g:UltiSnipsSnippetsDir= '~/.vim/bundle/ultisnips-snippets/my_snippets'
 " let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'my_snippets']
 " let g:UltiSnipsExpandTrigger="<tab>"
 nn <leader>ue :UltiSnipsEdit<CR>
-
-" ColorV
-nn <leader>ce :ColorVEdit<CR>
-let g:colorv_preview_ftype = 'css,html,javascript,sass'
 
 " Hardtime
 let g:hardtime_default_on = 1
@@ -440,6 +476,17 @@ let g:hardtime_default_on = 1
 
 " Gundo
 nn <leader>u :GundoToggle<CR>
+
+" vim-easy-align
+
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+" vim-jsx
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 " CtrlP
 nn <Leader>m :CtrlPMRUFiles<CR>
@@ -478,8 +525,6 @@ if executable('ag')
   let g:unite_source_grep_recursive_opt = ''"
 endif
 
-" Ack
-nn <Leader>f :Ack!<space>
 
 " using this to get line autocompletion to not automatically select the first option
 " set cot+=longest
@@ -587,7 +632,5 @@ set tildeop                             " Make tilde command behave like an oper
 set notimeout                           " Don't time out partially entered mapped key sequences.
 set ttimeout                            " But do time out key codes.
 set noequalalways
-
-colo argokai
 
 source ~/.vimrc.local
